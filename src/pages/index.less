@@ -1,7 +1,134 @@
+// .box {
+//   width: 100px;
+//   height: 100px;
+//   background: #000;
+// }
 
-.normal {
+// .demo-1 {
+//   &:hover {
+//     // width: 500px;
+//     transform: rotate(45deg);
+//   }
+//   transition: transform 2s ease-out;
+// }
+
+// .demo-2 {
+//   &:hover {
+//     .cell {
+//       animation: move 2s linear infinite;
+//     }
+//   }
+//   .cell {
+//     width: 200px;
+//     height: 200px;
+//     background: red;
+//   }
+// }
+
+// @keyframes move {
+//   100% {
+//     transform: translateX(200px);
+//   }
+// }
+
+// .demo-3 {
+//   margin: 40px auto;
+//   border-radius: 50%;
+//   animation: jump 1s cubic-bezier(0.41, -0.04, 0.93, 0.29) infinite;
+// }
+
+// @keyframes jump {
+//   0% {
+//     transform: translateY(0px);
+//   }
+//   90% {
+//     transform: translateY(200px);
+//     clip-path: ellipse(50% 50% at 50% 50%);
+//   }
+//   100% {
+//     transform: translateY(210px);
+//     clip-path: ellipse(50% 45% at 50% 48%);
+//   }
+// }
+
+// .loading {
+//   width: 250px;
+//   height: 250px;
+//   background: url('../images/loading.png') no-repeat;
+//   border-radius: 50%;
+//   animation: round 1s steps(12) infinite;
+// }
+
+// @keyframes round {
+//   100% {
+//     transform: rotate(360deg);
+//   }
+// }
+
+// .tuzi {
+//   width: 160px;
+//   height: 160px;
+//   border-radius: 50%;
+
+//   background: url('../images/tuzi.png') no-repeat;
+//   animation: run 1s steps(12) infinite;
+// }
+
+// @keyframes run {
+//   100% {
+//     background-position-x: -1910px;
+//   }
+// }
+
+// .content {
+//   position: relative;
+//   height: 100vh;
+//   background: #f2f2f2;
+//   overflow: hidden;
+//   .yudi {
+//     position: absolute;
+//     opacity: 0;
+//     // height: 4px;
+//     // width: 6px;
+//     // background: #ccc;
+//     // clip-path: ellipse(10% 30% at 50% 50%);
+//     // transform: scale(6);
+//     animation: drops 1.1s cubic-bezier(0.54, 0, 0.18, 0.34) infinite;
+//     height: 60px;
+//     width: 60px;
+//     background: url('../images/hongbao.jpeg') no-repeat;
+//     background-size: auto 60px;
+//   }
+// }
+
+// @keyframes drops {
+//   0% {
+//     opacity: 0;
+//   }
+//   20% {
+//     opacity: 1;
+//   }
+//   90% {
+//     opacity: 1;
+//   }
+//   100% {
+//     opacity: 0;
+//     transform: translate3d(10px, 100vh, -10px);
+//   }
+// }
+
+.marquee {
+  overflow: hidden;
 }
 
-.title {
-  background: rgb(121, 242, 157);
+.content {
+  display: flex;
+  .list {
+    overflow: hidden;
+    flex-shrink: 0;
+    img {
+      width: 100%;
+      height: 100%;
+    }
+  }
 }

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { map, matchesProperty } from 'lodash';
 import './index.less';
 
@@ -11,31 +11,50 @@ export default () => {
   const outerHeight = 400;
   const listLength = 3;
   const contentWidth = outerWidth * listLength;
-  const transitionTime = 0.3;
-  const [initIndex, setInitIndex] = useState(0);
-  const [transition, setTransition] = useState<any>(``);
+  const speed = 3;
   useEffect(() => {
-    const content = document.querySelector('.content');
-    content?.addEventListener('transitionend', () => {
-      setTransition('none');
-    });
+    const style = document.styleSheets;
+    style[0].insertRule(`
+    @keyframes run {
+      100% {
+        transform: translateX(-${contentWidth}px);
+      }
+    }`);
   }, []);
-  console.log('2', initIndex, outerWidth * initIndex);
+  // let leftNumber = 0;
+
   return (
     <div>
-      <button
-        onClick={() => {
-          console.log('initIndex', initIndex);
-          if (initIndex === listLength) {
-            setInitIndex(0);
-          } else {
-            setInitIndex(initIndex + 1);
-          }
-          setTransition(`transform ${transitionTime}s ease`);
-        }}
-      >
-        demo
-      </button>
+      {/* <div className="box demo-1"></div>
+      <div className="box demo-2">
+        <div className="cell"></div>
+      </div>
+      <div className="box demo-3">
+        <div className="cell"></div>
+      </div> */}
+      {/* <div className="loading"></div> */}
+      {/* <div className="tuzi"></div> */}
+
+      {/* <div className="content">
+        {map(new Array(30), (_, index) => {
+          const lefts = Math.floor(Math.random() * 5 + 2);
+          const delay = Math.floor(Math.random() * 50 + 2);
+          leftNumber += lefts;
+
+          return (
+            <div
+              className="yudi"
+              key={index}
+              style={{
+                left: `${leftNumber}%`,
+                top: `${lefts}`,
+                animationDelay: `${delay / 10}s`,
+              }}
+            ></div>
+          );
+        })}
+      </div> */}
+      {/* <marquee>aaaaaaaaa</marquee> */}
       <div
         className="marquee"
         style={{ width: outerWidth, height: outerHeight }}
@@ -45,8 +64,7 @@ export default () => {
           style={{
             width: contentWidth,
             height: outerHeight,
-            transition,
-            transform: `translate3d(-${outerWidth * initIndex}px)`,
+            animation: `run ${speed * listLength}s linear infinite`,
           }}
         >
           <div
