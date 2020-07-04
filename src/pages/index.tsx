@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import { map, matchesProperty } from 'lodash';
+import React, { useEffect, useState, useRef } from 'react';
+
 import './index.less';
 
 import img1 from '../images/1.jpeg';
@@ -12,29 +12,84 @@ export default () => {
   const listLength = 3;
   const contentWidth = outerWidth * listLength;
   const transitionTime = 0.3;
-  const [initIndex, setInitIndex] = useState(0);
-  const [transition, setTransition] = useState<any>(``);
+  const [loading, setLoading] = useState(false);
+  const [_, setUpdate] = useState(false);
+
+  const numRef = useRef(0);
+  const contentRef = useRef<any>(null);
+  const styleRef = useRef({});
+
+  const forceUpdate = () => {
+    setUpdate(c => !c);
+  };
+
   useEffect(() => {
-    const content = document.querySelector('.content');
-    content?.addEventListener('transitionend', () => {
-      setTransition('none');
+    contentRef.current.addEventListener('transitionend', () => {
+      styleRef.current = {
+        transition: `none`,
+        transform: `translateX(-${outerWidth * numRef.current}px)`,
+      };
+      forceUpdate();
+      // 效果结束才能点击切换按钮
+      setLoading(false);
     });
   }, []);
-  console.log('2', initIndex, outerWidth * initIndex);
   return (
     <div>
       <button
-        onClick={() => {
-          console.log('initIndex', initIndex);
-          if (initIndex === listLength) {
-            setInitIndex(0);
-          } else {
-            setInitIndex(initIndex + 1);
+        onMouseEnter={() => {
+          setLoading(false);
+          if (numRef.current === 0) {
+            numRef.current = listLength;
+            styleRef.current = {
+              transition: `none`,
+              transform: `translateX(-${outerWidth * numRef.current}px)`,
+            };
+            forceUpdate();
           }
-          setTransition(`transform ${transitionTime}s ease`);
+        }}
+        onClick={() => {
+          if (loading) return;
+          // 防连点
+          setLoading(true);
+          numRef.current--;
+          styleRef.current = {
+            transition: `transform ${transitionTime}s ease`,
+            transform: `translateX(-${outerWidth * numRef.current}px)`,
+          };
+
+          numRef.current === 0 ? (numRef.current = listLength) : '';
+          forceUpdate();
         }}
       >
-        demo
+        prev
+      </button>
+      <button
+        onMouseEnter={() => {
+          setLoading(false);
+          if (numRef.current === listLength) {
+            numRef.current = 0;
+            styleRef.current = {
+              transition: `none`,
+              transform: `translateX(-${outerWidth * numRef.current}px)`,
+            };
+            forceUpdate();
+          }
+        }}
+        onClick={() => {
+          if (loading) return;
+          // 防连点
+          setLoading(true);
+          numRef.current++;
+          styleRef.current = {
+            transition: `transform ${transitionTime}s ease`,
+            transform: `translateX(-${outerWidth * numRef.current}px)`,
+          };
+          numRef.current === listLength ? (numRef.current = 0) : '';
+          forceUpdate();
+        }}
+      >
+        next
       </button>
       <div
         className="marquee"
@@ -42,35 +97,39 @@ export default () => {
       >
         <div
           className="content"
+          ref={contentRef}
           style={{
             width: contentWidth,
             height: outerHeight,
-            transition,
-            transform: `translate3d(-${outerWidth * initIndex}px)`,
+            ...styleRef.current,
           }}
         >
           <div
             className="list"
             style={{ width: outerWidth, height: outerHeight }}
           >
+            1
             <img src={img1} alt="" />
           </div>
           <div
             className="list"
             style={{ width: outerWidth, height: outerHeight }}
           >
+            2
             <img src={img2} alt="" />
           </div>
           <div
             className="list"
             style={{ width: outerWidth, height: outerHeight }}
           >
+            3
             <img src={img3} alt="" />
           </div>
           <div
             className="list"
             style={{ width: outerWidth, height: outerHeight }}
           >
+            1 -
             <img src={img1} alt="" />
           </div>
         </div>

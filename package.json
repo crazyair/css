@@ -28,6 +28,11 @@
     "prettier": "^1.19.1",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
+    "react-id-swiper": "^4.0.0",
+    "react-slick": "^0.26.1",
+    "reactjs-swiper": "^0.1.0",
+    "slick-carousel": "^1.8.1",
+    "swiper": "^6.0.0",
     "umi": "^3.2.7",
     "yorkie": "^2.0.0"
   }
