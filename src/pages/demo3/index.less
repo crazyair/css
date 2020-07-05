@@ -1,0 +1,263 @@
+// .triangle {
+//   width: 0px;
+//   border-width: 12px 20px;
+//   border-style: solid;
+//   border-color: red red transparent transparent;
+// }
+
+.triangle {
+  width: 100px;
+  height: 100px;
+  border: 100px solid;
+  border-color: transparent green transparent orange;
+}
+
+.icon {
+  width: 32px;
+  height: 32px;
+  overflow: hidden;
+  img {
+    position: relative;
+    left: -32px;
+    border-right: 32px solid transparent;
+    filter: drop-shadow(32px 0 red);
+  }
+}
+
+.box {
+  border-left: 300px solid #222;
+}
+.left {
+  width: 300px;
+  margin-left: -300px;
+  float: left;
+}
+
+.padding {
+  width: 150px;
+  height: 150px;
+  padding: 10px;
+  border: 10px solid;
+  border-radius: 50%;
+  background-color: currentColor;
+  background-clip: content-box;
+}
+.margin {
+  .father {
+    background: #ccc;
+    height: 200px;
+    position: relative;
+    .sun {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      width: 500px;
+      height: 100px;
+      margin: auto;
+      background-color: red;
+    }
+  }
+  .box {
+    width: 1200px;
+    margin: auto;
+    background: red;
+    .ul {
+      overflow: hidden;
+      margin-right: -20px;
+      .li {
+        width: 386.66px;
+        height: 300px;
+        margin-right: 20px;
+        background: green;
+        float: left;
+      }
+    }
+  }
+}
+
+.spinner {
+  width: 40px;
+  height: 40px;
+  background: red;
+  border-radius: 100%;
+  margin: 100px auto;
+  animation: fadeOut 1s infinite ease-in-out;
+}
+
+@keyframes fadeOut {
+  0% {
+    transform: scale(0);
+  }
+  100% {
+    transform: scale(1);
+    opacity: 0;
+  }
+}
+
+.imgs {
+  width: 300px;
+  height: 200px;
+  margin: 2rem auto;
+  img {
+    width: 300px;
+    height: 200px;
+    position: absolute;
+    border: 10px solid #fff;
+    box-sizing: border-box;
+    box-shadow: 4px 4px 3px rgba(0, 0, 0, 0.2);
+    transform-origin: center 800px;
+    transition: transform 0.7s ease;
+    &:first-child {
+      transform: rotate(5deg);
+    }
+    &:last-child {
+      transform: rotate(-5deg);
+    }
+  }
+
+  &:hover {
+    img {
+      &:first-child {
+        transform: rotate(25deg);
+      }
+      &:last-child {
+        transform: rotate(-25deg);
+      }
+    }
+  }
+}
+
+.spinner2 {
+  width: 50px;
+  height: 50px;
+  margin: 100px auto;
+  text-align: center;
+  div {
+    display: inline-block;
+    width: 3px;
+    height: 100%;
+    // padding-right: 5px;
+    margin-left: 5px;
+    background: green;
+    animation: stretchDelay 1.2s infinite ease-in-out;
+  }
+  .line2 {
+    animation-delay: -1.1s;
+  }
+  .line3 {
+    animation-delay: -1s;
+  }
+  .line4 {
+    animation-delay: -0.9s;
+  }
+  .line5 {
+    animation-delay: -0.8s;
+  }
+}
+@keyframes stretchDelay {
+  0%,
+  40%,
+  100% {
+    transform: scaleY(0.4);
+  }
+  20% {
+    transform: scaleY(1);
+  }
+}
+
+.spinner3 {
+  div {
+    width: 200px;
+    height: 200px;
+    margin: 100px auto;
+    border: 1.1em solid #ccc;
+    border-left-color: green;
+    border-radius: 50%;
+    animation: load 1.1s infinite linear;
+  }
+}
+
+@keyframes load {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.stage {
+  width: 400px;
+  height: 400px;
+  margin: 100px auto;
+  .rock {
+    width: 130px;
+    height: 250px;
+    background: url('../../images/1.jpeg');
+    background-size: cover;
+    transform-origin: 200% center;
+    animation: circle 1s infinite linear;
+  }
+}
+
+@keyframes circle {
+  100% {
+    transform: rotate(1turn);
+  }
+}
+
+.demo {
+  width: 300px;
+  height: 300px;
+  border-radius: 50%;
+
+  position: relative;
+  display: block;
+  &:hover {
+    .mask {
+      background-color: rgba(0, 0, 0, 0.5);
+      color: rgba(255, 255, 255, 1);
+    }
+    .border {
+      transform: rotate(180deg);
+    }
+  }
+  .img,
+  .mask,
+  .border {
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+  }
+  .img {
+    background: url('../../images/1.jpeg');
+    background-size: cover;
+    background-position: 50% 50%;
+  }
+
+  .mask,
+  .border {
+    position: absolute;
+    left: 0;
+    top: 0;
+  }
+  .mask {
+    text-align: center;
+    color: rgba(255, 255, 255, 0);
+    transition: all 0.5s ease-in;
+    .info {
+      margin-top: 50%;
+      transform: translateY(-50%);
+    }
+  }
+
+  .border {
+    border: 10px solid #072256;
+    border-left-color: #e07514;
+    border-top-color: #e07514;
+    box-sizing: border-box;
+    transition: all 0.5s ease-in;
+  }
+}

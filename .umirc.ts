@@ -6,7 +6,7 @@ export default defineConfig({
     type: 'none',
   },
   antd: {},
-  layout: { name: '学习 css ' },
+  // layout: { name: '学习 css ' },
   routes: [
     { path: '/', component: '@/pages/index' },
     {
@@ -19,5 +19,6 @@ export default defineConfig({
       menu: { name: '轮播2' },
       routes: [{ path: '.', component: '@/pages/demo2' }],
     },
+    { path: '/demo3', menu: { name: '官网' }, component: '@/pages/demo3' },
   ],
 });
