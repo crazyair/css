@@ -6,7 +6,7 @@ export default defineConfig({
     type: 'none',
   },
   antd: {},
-  // layout: { name: '学习 css ' },
+  layout: { name: '学习 css ' },
   routes: [
     { path: '/', component: '@/pages/index' },
     {
